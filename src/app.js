@@ -22,6 +22,14 @@ app.use((req, res) => {
   res.status(404).json({ message: "Route not found" });
 });
 
+app.use(cors());
+app.use(express.json());
+
+// Test route
+app.get("/api/health", (req, res) => {
+  res.json({ status: "ok", message: "Backend running ✅" });
+});
+
 // Error middleware (last)
 const { errorHandler } = require("./middlewares/error.middleware.js");
 app.use(errorHandler);
